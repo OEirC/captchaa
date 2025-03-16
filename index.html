@@ -135,6 +135,7 @@
             if (userInput === captchaText) {
                 message.textContent = 'Captcha is correct!';
                 message.style.color = '#28a745';
+                window.location.replace("https://example.com");
             } else {
                 message.textContent = 'Incorrect captcha. Try again.';
                 message.style.color = '#d9534f';
