@@ -80,7 +80,7 @@
 
     <script>
         function generateCaptcha() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789;
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let captcha = '';
             for (let i = 0; i < 6; i++) {
                 captcha += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -101,14 +101,17 @@
                 captchaElement.appendChild(charSpan);
             }
 
+            // Add random lines and noise
             const canvas = document.createElement('canvas');
             canvas.width = 200;
             canvas.height = 50;
             const ctx = canvas.getContext('2d');
 
+            // Draw background
             ctx.fillStyle = '#eaeaea';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+            // Draw random lines
             for (let i = 0; i < 5; i++) {
                 ctx.strokeStyle = `rgba(0, 0, 0, ${Math.random() * 0.2 + 0.1})`;
                 ctx.beginPath();
@@ -117,6 +120,7 @@
                 ctx.stroke();
             }
 
+            // Draw random dots
             for (let i = 0; i < 50; i++) {
                 ctx.fillStyle = `rgba(0, 0, 0, ${Math.random() * 0.5 + 0.1})`;
                 ctx.beginPath();
@@ -124,6 +128,7 @@
                 ctx.fill();
             }
 
+            // Convert canvas to image and set as background
             captchaElement.style.backgroundImage = `url(${canvas.toDataURL()})`;
             captchaElement.dataset.captcha = captchaText;
         }
